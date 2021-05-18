@@ -2,17 +2,21 @@
   "development": {
     "username": "postgres",
     "password": "VaMil2002!",
-    "database": "express_auth_dev",
+    "database": "etf_helper",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "username": "postgres",
+    "password": "VaMil2002!",
+    "database": "etf_helper",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "express_auth_production",
+    "username": "postgres",
+    "password": "VaMil2002!",
+    "database": "etf_helper",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
