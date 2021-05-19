@@ -6,6 +6,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const db = require('./models');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
@@ -44,6 +45,23 @@ app.get('/', (req, res) => {
 app.get('/profile', (req, res) => {
   res.render('profile');
 });
+
+app.get('/historic/historic', (req, res) => {
+  res.render('historic/historic');
+});
+
+app.get('/historic', async (req, res) => {
+  const fetchTickers = await db.historic.findAll();
+  res.render('historic/index', {historics: fetchTickers});
+})
+
+app.post('/historic/historic', async (req, res) => {
+  const {ticker, currentHighend, currentLowend} = req.body;
+  console.log(ticker, currentHighend, currentLowend);
+  const newTicker = await db.historic.create({ticker: ticker, currentHighend: currentHighend, currentLowend: currentLowend});
+  console.log(newTicker);
+  res.redirect('/historic')
+})
 
 app.use('/auth', require('./controllers/auth'));
 
