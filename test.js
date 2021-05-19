@@ -2,7 +2,7 @@ const db = require('./models');
 
 
 const findData = () => {
-    db.etfdata.findAll()
+    db.etfData.findAll()
     .then(foundData =>{
         console.log(foundData)
     })
