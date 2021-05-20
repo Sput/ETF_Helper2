@@ -8,6 +8,7 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const db = require('./models');
 const etf_weekly = require('./models/etf_weekly');
+const axios = require('axios');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
@@ -71,10 +72,10 @@ app.get('/historic', (req, res) => {
 
 
 app.get('/ETFs', (req, res) => {
-  db.ETF_weekly.findAll()
-  .then (etf_weeklies => { 
-    console.log(etf_weeklies)
-    res.render('ETFs/index', {etf_weeklies});
+  db.etf_weekly3.findAll()
+  .then (etf_weekly3s => { 
+    console.log(etf_weekly3s)
+    res.render('ETFs/index', {etf_weekly3s});
   })
 })
 
@@ -90,10 +91,34 @@ app.post('/historic/historic', async (req, res) => {
 app.post('/ETFs/weekly', async (req, res) => {
   const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.high_end, req.body.low_end, req.body.trend]
   //const {ticker, currentHighend, currentLowend} = req.body;
-  console.log(ticker, currentHighend, currentLowend);
-  const newTicker = await db.ETF_weekly.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend});
-  console.log(newTicker);
-  res.redirect('/ETFs')
+  const ticker_for_api = req.body.ticker;
+  const upper = req.body.high_end;
+  const lower = req.body.low_end;
+  URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=BTMZPVP11OHBO0FJ`
+  axios.get(URL)
+  .then(response => {
+    console.log('*************************');
+    console.log(response.data);
+    const ticker_data = response.data;
+    console.log('*************************');
+    console.log(ticker_data);
+    
+ // }) .then(function(){
+    const price = ticker_data['Global Quote']["05. price"]
+    console.log(price);
+    console.log('*************************');
+    console.log(ticker_for_api);
+    console.log('*************************');
+    console.log(ticker, currentHighend, currentLowend);
+    const ratio = ((price-lower) / (upper - lower)).toFixed(2);
+    db.etf_weekly3.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend, current_price:price, ratio:ratio})
+    .then (newTicker=> console.log(newTicker));
+    
+    res.redirect('/ETFs')
+  
+  })
+  
+  
 })
 
 

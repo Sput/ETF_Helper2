@@ -1,5 +1,6 @@
 <ul>
-    <% etf_weeklies.forEach(tick => { %>
-    <li><%= tick.ticker %> <%= tick.trend %> </li>
+    <% etf_weekly3s.forEach(tick => { %>
+    <li><%= tick.ticker %> <%= tick.low_end %> <%= tick.high_end %> <%= tick.current_price %> <%= tick.trend %> <%= tick.ratio %> </li>
     <% }) %> 
 </ul>
+
