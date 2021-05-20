@@ -97,19 +97,8 @@ app.post('/ETFs/weekly', async (req, res) => {
   URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=BTMZPVP11OHBO0FJ`
   axios.get(URL)
   .then(response => {
-    console.log('*************************');
-    console.log(response.data);
     const ticker_data = response.data;
-    console.log('*************************');
-    console.log(ticker_data);
-    
- // }) .then(function(){
     const price = ticker_data['Global Quote']["05. price"]
-    console.log(price);
-    console.log('*************************');
-    console.log(ticker_for_api);
-    console.log('*************************');
-    console.log(ticker, currentHighend, currentLowend);
     const ratio = ((price-lower) / (upper - lower)).toFixed(2);
     db.etf_weekly3.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend, current_price:price, ratio:ratio})
     .then (newTicker=> console.log(newTicker));

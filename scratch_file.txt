@@ -1,0 +1,17 @@
+app.post('/historic/historic', async (req, res) => {
+  const [ticker, currentHighend, currentLowend] = [req.body.ticker, req.body.high_end, req.body.low_end]
+  //const {ticker, currentHighend, currentLowend} = req.body;
+  console.log(ticker, currentHighend, currentLowend);
+  const newTicker = await db.historic.create({ticker: ticker, currentHighend: currentHighend, currentLowend: currentLowend});
+  console.log(newTicker);
+  res.redirect('/historic')
+})
+
+app.get('/historic', (req, res) => {
+  db.historic.findAll()
+  .then (historics => { 
+    console.log(historics)
+    res.render('historic/index', {historics});
+  })
+  
+})

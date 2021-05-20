@@ -1,14 +1,9 @@
-const axios = require('axios');
-const ticker_for_api = 'XLF';
-const 
 
-
-URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=BTMZPVP11OHBO0FJ`
-axios.get(URL)
-.then(response => {
-    console.log('*************************');
-    console.log(response.data);
-    const ticker_data = response.data;
-    console.log('*************************');
-    console.log(ticker_data)
-});
+//let today1= new Date(dateString);
+let today4 = new Date();
+const day = today4.getDate();
+const year = today4.getFullYear();
+const month = today4.getMonth();
+let today1 = concat(year, month, day)
+console.log(today1);
+//console.log(today1)
