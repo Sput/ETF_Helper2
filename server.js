@@ -48,9 +48,7 @@ app.get('/profile', (req, res) => {
   res.render('profile');
 });
 
-app.get('/historic/historic', (req, res) => {
-  res.render('historic/historic');
-});
+
 
 
 app.get('/ETFs/weekly', (req, res) => {
@@ -61,14 +59,7 @@ app.get('/ETFs/new', (req, res) => {
   res.render('ETFs/new');
 });
 
-app.get('/historic', (req, res) => {
-  db.historic.findAll()
-  .then (historics => { 
-    console.log(historics)
-    res.render('historic/index', {historics});
-  })
-  
-})
+
 
 
 app.get('/ETFs', (req, res) => {
@@ -79,14 +70,7 @@ app.get('/ETFs', (req, res) => {
   })
 })
 
-app.post('/historic/historic', async (req, res) => {
-  const [ticker, currentHighend, currentLowend] = [req.body.ticker, req.body.high_end, req.body.low_end]
-  //const {ticker, currentHighend, currentLowend} = req.body;
-  console.log(ticker, currentHighend, currentLowend);
-  const newTicker = await db.historic.create({ticker: ticker, currentHighend: currentHighend, currentLowend: currentLowend});
-  console.log(newTicker);
-  res.redirect('/historic')
-})
+
 
 app.post('/ETFs/weekly', async (req, res) => {
   const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.high_end, req.body.low_end, req.body.trend]
