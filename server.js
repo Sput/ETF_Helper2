@@ -41,7 +41,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+  const { id, name, email } = req.user.get();
+  res.render('profile', { id, name, email });
 });
 
 app.get('/etfs/weekly', (req, res) => {
