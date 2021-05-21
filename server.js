@@ -87,7 +87,7 @@ app.post('/ETFs/new', async (req, res) => {
   //const {ticker, currentHighend, currentLowend} = req.body;
   console.log(symbol, long_name, industry);
   const newTicker = await db.etfData.create({symbol: symbol, long_name: long_name, industry: industry});
-  res.redirect('/ETFs')
+  res.redirect('/etfs')
 })
 
 app.use('/auth', require('./controllers/auth'));
