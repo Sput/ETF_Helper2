@@ -82,7 +82,7 @@ app.post('/etfs/weekly', async (req, res) => {
   })  
 })
 
-app.post('/ETFs/new', async (req, res) => {
+app.post('/etfs/new', async (req, res) => {
   const [symbol, long_name, industry] = [req.body.symbol, req.body.long_name, req.body.industry]
   //const {ticker, currentHighend, currentLowend} = req.body;
   console.log(symbol, long_name, industry);
