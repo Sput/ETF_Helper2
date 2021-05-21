@@ -17,18 +17,16 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
-//PP middlware
-app.use(passport.initialize());      // Initialize passport
-app.use(passport.session());         // Add a session
-
 
 app.use(session({
-  secret: SECRET_SESSION,    // What we actually will be giving the user on our site as a session cookie
-  resave: false,             // Save the session even if it's modified, make this false
-  saveUninitialized: true    // If we have a new session, we save it, therefore making that true
+  secret: SECRET_SESSION,
+  resave: false,
+  saveUninitialized: true
 }));
+app.use(flash());
 
-app.use(flash());            // flash middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
   console.log(res.locals);
@@ -82,7 +80,7 @@ app.post('/etfs/weekly', async (req, res) => {
   })  
 })
 
-app.post('/ETFs/new', async (req, res) => {
+app.post('/etfs/new', async (req, res) => {
   const [symbol, long_name, industry] = [req.body.symbol, req.body.long_name, req.body.industry]
   //const {ticker, currentHighend, currentLowend} = req.body;
   console.log(symbol, long_name, industry);
