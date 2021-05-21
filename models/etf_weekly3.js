@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      //models.etf_weekly3.belongsTo(models.etfdata);
     }
   };
   etf_weekly3.init({

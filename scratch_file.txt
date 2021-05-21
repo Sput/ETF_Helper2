@@ -25,3 +25,6 @@ app.get('/historic/historic', (req, res) => {
     <li><%= tick.ticker %> <%= tick.low_end %> <%= tick.high_end %> <%= tick.current_price %> <%= tick.trend %> <%= tick.ratio %> </li>
     <% }) %> 
 </ul> -->
+
+etf_weekly.findOne
+order createdAt:DESC
