@@ -7,11 +7,9 @@ const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const db = require('./models');
-const etf_weekly = require('./models/etf_weekly');
 const axios = require('axios');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
-console.log(SECRET_SESSION);
 
 app.set('view engine', 'ejs');
 
@@ -44,23 +42,17 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
 
-
-
-
 app.get('/etfs/weekly', (req, res) => {
-  res.render('ETFs/weekly');
+  res.render('etfs/weekly');
 });
 
 app.get('/etfs/new', (req, res) => {
-  res.render('ETFs/new');
+  res.render('etfs/new');
 });
-
-
-
 
 app.get('/etfs', (req, res) => {
   db.etf_weekly3.findAll()
@@ -86,16 +78,9 @@ app.post('/etfs/weekly', async (req, res) => {
     const ratio = ((price-lower) / (upper - lower)).toFixed(2);
     db.etf_weekly3.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend, current_price:price, ratio:ratio})
     .then (newTicker=> console.log(newTicker));
-    
     res.redirect('/etfs')
-  
-  })
-  
-  
+  })  
 })
-
-
-
 
 app.post('/ETFs/new', async (req, res) => {
   const [symbol, long_name, industry] = [req.body.symbol, req.body.long_name, req.body.industry]
@@ -106,7 +91,6 @@ app.post('/ETFs/new', async (req, res) => {
 })
 
 app.use('/auth', require('./controllers/auth'));
-
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
