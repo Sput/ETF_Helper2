@@ -70,7 +70,7 @@ app.get('/ETFs', (req, res) => {
   })
 })
 
-
+const API_KEY = process.env.API_KEY;
 
 app.post('/ETFs/weekly', async (req, res) => {
   const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.high_end, req.body.low_end, req.body.trend]
@@ -78,7 +78,7 @@ app.post('/ETFs/weekly', async (req, res) => {
   const ticker_for_api = req.body.ticker;
   const upper = req.body.high_end;
   const lower = req.body.low_end;
-  URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=BTMZPVP11OHBO0FJ`
+  URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=${API_KEY}`
   axios.get(URL)
   .then(response => {
     const ticker_data = response.data;
