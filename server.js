@@ -51,28 +51,28 @@ app.get('/profile', (req, res) => {
 
 
 
-app.get('/ETFs/weekly', (req, res) => {
+app.get('/etfs/weekly', (req, res) => {
   res.render('ETFs/weekly');
 });
 
-app.get('/ETFs/new', (req, res) => {
+app.get('/etfs/new', (req, res) => {
   res.render('ETFs/new');
 });
 
 
 
 
-app.get('/ETFs', (req, res) => {
+app.get('/etfs', (req, res) => {
   db.etf_weekly3.findAll()
   .then (etf_weekly3s => { 
     console.log(etf_weekly3s)
-    res.render('ETFs/index', {etf_weekly3s});
+    res.render('etfs/index', {etf_weekly3s});
   })
 })
 
 const API_KEY = process.env.API_KEY;
 
-app.post('/ETFs/weekly', async (req, res) => {
+app.post('/etfs/weekly', async (req, res) => {
   const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.high_end, req.body.low_end, req.body.trend]
   //const {ticker, currentHighend, currentLowend} = req.body;
   const ticker_for_api = req.body.ticker;
@@ -87,7 +87,7 @@ app.post('/ETFs/weekly', async (req, res) => {
     db.etf_weekly3.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend, current_price:price, ratio:ratio})
     .then (newTicker=> console.log(newTicker));
     
-    res.redirect('/ETFs')
+    res.redirect('/etfs')
   
   })
   
