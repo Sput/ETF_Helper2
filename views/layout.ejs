@@ -10,10 +10,13 @@
     <header>
       <nav>
         <ul>
-          <li><a href="/auth/signup">Signup</a></li>
-          <li><a href="/auth/login">Login</a></li>
+          <% if(!currentUser) { %> 
+            <li><a href="/auth/signup">Signup</a></li>
+            <li><a href="/auth/login">Login</a></li>
+          <% } else { %> 
           <li><a href="/auth/logout">Logout</a></li>
           <li><a href="/profile">Profile</a></li>
+          <% } %> 
         </ul>
       </nav>
     </header>
@@ -21,3 +24,5 @@
     <%- body %>
   </body>
 </html>
+
+
