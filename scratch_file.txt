@@ -15,3 +15,13 @@ app.get('/historic', (req, res) => {
   })
   
 })
+
+app.get('/historic/historic', (req, res) => {
+  res.render('historic/historic');
+});
+
+<!-- <ul>
+    <% etf_weekly3s.forEach(tick => { %>
+    <li><%= tick.ticker %> <%= tick.low_end %> <%= tick.high_end %> <%= tick.current_price %> <%= tick.trend %> <%= tick.ratio %> </li>
+    <% }) %> 
+</ul> -->

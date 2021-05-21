@@ -1,6 +1,20 @@
-<ul>
-    <% etf_weekly3s.forEach(tick => { %>
-    <li><%= tick.ticker %> <%= tick.low_end %> <%= tick.high_end %> <%= tick.current_price %> <%= tick.trend %> <%= tick.ratio %> </li>
-    <% }) %> 
-</ul>
 
+
+<% etf_weekly3s.forEach(ETF => { %>
+    <form method="POST" action="/ETFs/<%=ETF.etfDataId%>/?_method=PUT">
+        <input type="text" name="ticker" value="<%= ETF.ticker %>">
+        <input type="text" name="low_end" value="<%= ETF.low_end %>">
+        <input type="text" name="high_end" value="<%= ETF.high_end %>">
+        <input type="text" name="current_price" value="<%= ETF.current_price %>">
+        <input type="text" name="trend" value="<%= ETF.trend %>">
+        <input type="text" name="ratio" value="<%= ETF.ratio %>">
+    
+        <input type="submit">
+    </form>
+<% }) %>
+
+<form method="GET" action="/new">
+    <label for="editETFs">Edit your ETFs</label>
+    <input id="editETFs" type="text" name="editETFs">
+    <input type="submit">
+  </form>
