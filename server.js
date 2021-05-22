@@ -88,7 +88,7 @@ router.put('/etfs/myetfs/:id', async function (req, res) {
   const symbol = req.body.symbol;
   const longName = req.body.longName;
   const industry = req.body.industry;
-
+/*
   const etfToUpdate = await db.etfData.update({ symbol: 'symbol' })
     where: {
       symbol: req.body.symbol
@@ -103,6 +103,7 @@ router.put('/etfs/myetfs/:id', async function (req, res) {
       industry: req.body.industry
     }
   res.redirect("/etfs/myetfs");
+*/
 });
 
 
