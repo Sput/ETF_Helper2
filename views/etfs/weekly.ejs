@@ -11,6 +11,20 @@
         <option value="bullish">Bullish</option>
         <option value="bearish">Bearish</option>
         </select>
+    <button onclick="addRow()">Add ETF</button>
     
-    <button type="submit">Submit Tickers</button>
 </form>
+
+<script>
+function addRow() {
+    let newTicker = document.createElement("INPUT");
+    newTicker.setAttribute("type", "text");
+    let newLowEnd = document.createElement("INPUT");
+    newlowEnd.setAttribute("type", "text");
+    let newHighEnd = document.createElement("INPUT");
+    newTicker.setAttribute("type", "text");
+}
+
+</script>
+
+<button type="submit">Submit Tickers</button>
