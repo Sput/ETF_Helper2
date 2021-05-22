@@ -69,10 +69,10 @@ app.get('/etfs/myetfs', (req, res) => {
   })
 })
 
-app.delete('/etfs/myetfs/entryId', (req, res) => {
+app.delete('/etfs/myetfs/:id', async (req, res) => {
   const etfToDelete = await db.etfData.destroy({
     where: {
-      entryId: req.body.entryId
+      id: req.body.entryId
     }
 
   })
