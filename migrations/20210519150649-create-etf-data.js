@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      entryId: {
-        type: Sequelize.INTEGER
-      },
       symbol: {
         type: Sequelize.STRING
       },
@@ -19,6 +16,9 @@ module.exports = {
       },
       industry: {
         type: Sequelize.STRING
+      },
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

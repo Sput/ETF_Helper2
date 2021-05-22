@@ -8,18 +8,19 @@ module.exports = (sequelize, DataTypes) => {
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
+     * certain number of etf that you track and each week you will get the
+     * financials
      */
     static associate(models) {
       // define association here
-      //models.etfdata.hasMany(models.etf_weekly3);
-      //models.etfdata.belongsTo(models.user);
+      models.etfData.belongsTo(models.user);
     }
   };
   etfData.init({
-    entryId: DataTypes.INTEGER,
     symbol: DataTypes.STRING,
     longName: DataTypes.STRING,
-    industry: DataTypes.STRING
+    industry: DataTypes.STRING,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'etfData',

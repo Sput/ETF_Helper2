@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class entry extends Model {
+  class etfWeekly extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,18 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.etfWeekly.belongsTo(models.user);
     }
   };
-  entry.init({
-    entryId: DataTypes.INTEGER,
-    symbol: DataTypes.STRING,
+  etfWeekly.init({
+    ticker: DataTypes.STRING,
+    lowEnd: DataTypes.FLOAT,
+    highEnd: DataTypes.FLOAT,
+    currentPrice: DataTypes.FLOAT,
     trend: DataTypes.STRING,
-    currentHighend: DataTypes.FLOAT,
-    currentLowend: DataTypes.FLOAT,
-    date: DataTypes.DATE
+    ratio: DataTypes.FLOAT,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'entry',
+    modelName: 'etfWeekly',
   });
-  return entry;
+  return etfWeekly;
 };

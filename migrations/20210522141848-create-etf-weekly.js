@@ -1,30 +1,33 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('currents', {
+    await queryInterface.createTable('etfWeeklies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER
-      },
       ticker: {
         type: Sequelize.STRING
       },
-      longname: {
-        type: Sequelize.STRING
+      lowEnd: {
+        type: Sequelize.FLOAT
+      },
+      highEnd: {
+        type: Sequelize.FLOAT
+      },
+      currentPrice: {
+        type: Sequelize.FLOAT
       },
       trend: {
         type: Sequelize.STRING
       },
-      currentHighend: {
+      ratio: {
         type: Sequelize.FLOAT
       },
-      currentLowend: {
-        type: Sequelize.FLOAT
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +40,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('currents');
+    await queryInterface.dropTable('etfWeeklies');
   }
 };
