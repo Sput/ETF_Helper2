@@ -84,7 +84,7 @@ app.get('/etfs/edit', (req, res) => {
 });
 
 
-router.put('/etfs/myetfs/entryId', function (req, res) {
+router.put('/etfs/myetfs/:id', async function (req, res) {
   const symbol = req.body.symbol;
   const longName = req.body.longName;
   const industry = req.body.industry;
