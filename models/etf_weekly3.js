@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
   etf_weekly3.init({
     etfDataId: DataTypes.INTEGER,
     ticker: DataTypes.STRING,
-    low_end: DataTypes.FLOAT,
-    high_end: DataTypes.FLOAT,
-    current_price: DataTypes.FLOAT,
+    lowEnd: DataTypes.FLOAT,
+    highEnd: DataTypes.FLOAT,
+    currentPrice: DataTypes.FLOAT,
     trend: DataTypes.STRING,
     ratio: DataTypes.FLOAT
   }, {

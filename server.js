@@ -64,19 +64,20 @@ app.get('/etfs', (req, res) => {
 const API_KEY = process.env.API_KEY;
 
 app.post('/etfs/weekly', async (req, res) => {
-  const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.high_end, req.body.low_end, req.body.trend]
+  const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.highEnd, req.body.lowEnd, req.body.trend]
   //const {ticker, currentHighend, currentLowend} = req.body;
+  console.log(req.body)
   const ticker_for_api = req.body.ticker;
   const upper = req.body.high_end;
   const lower = req.body.low_end;
   URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=${API_KEY}`
   axios.get(URL)
   .then(response => {
-    const ticker_data = response.data;
-    const price = ticker_data['Global Quote']["05. price"]
+    const tickerData = response.data;
+    const price = tickerData['Global Quote']["05. price"]
     const ratio = ((price-lower) / (upper - lower)).toFixed(2);
-    db.etf_weekly3.create({ticker: ticker, high_end: currentHighend, low_end: currentLowend, trend:trend, current_price:price, ratio:ratio})
-    .then (newTicker=> console.log(newTicker));
+    db.etf_weekly3.create({ticker: ticker, highEnd: currentHighend, lowEnd: currentLowend, trend:trend, currentPrice:price, ratio:ratio})
+    .then(newTicker=> console.log(newTicker));
     res.redirect('/etfs')
   })  
 })
