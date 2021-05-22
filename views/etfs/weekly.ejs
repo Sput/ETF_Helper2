@@ -21,8 +21,13 @@ function addRow() {
     newTicker.setAttribute("type", "text");
     let newLowEnd = document.createElement("INPUT");
     newlowEnd.setAttribute("type", "text");
-    let newHighEnd = document.createElement("INPUT");
-    newTicker.setAttribute("type", "text");
+    let trend = document.createElement("SELECT");
+    let bullishOption = document.createElement("option");
+    bullishOption.text = "bullish";
+    trend.add(bullishOption);
+    let bearishOption = document.createElement("option");
+    bearishOption.text = "bearish";
+    trend.add(bearishOption);
 }
 
 </script>

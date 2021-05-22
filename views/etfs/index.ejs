@@ -1,6 +1,6 @@
 
 
-<% etf_weekly3s.forEach(ETF => { %>
+<% etfWeeklies.forEach(ETF => { %>
     <form method="POST" action="/ETFs/<%=ETF.etfDataId%>/?_method=PUT">
         <input type="text" name="ticker" value="<%= ETF.ticker %>">
         <input type="text" name="lowEnd" value="<%= ETF.lowEnd %>">

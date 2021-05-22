@@ -21,7 +21,7 @@ app.get('/historic/historic', (req, res) => {
 });
 
 <!-- <ul>
-    <% etf_weekly3s.forEach(tick => { %>
+    <% etfWeeklies.forEach(tick => { %>
     <li><%= tick.ticker %> <%= tick.low_end %> <%= tick.high_end %> <%= tick.current_price %> <%= tick.trend %> <%= tick.ratio %> </li>
     <% }) %> 
 </ul> -->

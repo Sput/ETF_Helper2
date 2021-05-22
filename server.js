@@ -54,23 +54,23 @@ app.get('/etfs/new', (req, res) => {
 });
 
 app.get('/etfs', (req, res) => {
-  db.etf_weekly3.findAll()
-  .then (etf_weekly3s => { 
-    console.log(etf_weekly3s)
-    res.render('etfs/index', {etf_weekly3s});
+  db.etfWeekly.findAll()
+  .then (etfWeeklys => { 
+    console.log(etfWeeklys)
+    res.render('etfs/index', {etfWeeklys});
   })
 })
 
 app.get('/etfs/myetfs', (req, res) => {
-  db.etfdata.findAll()
-  .then (etfdatas => { 
-    console.log(etfdatas)
-    res.render('etfs/myetfs', {etfdatas});
+  db.etfData.findAll()
+  .then (etfDatas => { 
+    console.log(etfDatas)
+    res.render('etfs/myetfs', {etfDatas});
   })
 })
 
 app.delete('/etfs/myetfs/entryId', (req, res) => {
-  const etfToDelete = await db.etfdata.Destroy({
+  const etfToDelete = await db.etfData.destroy({
     where: {
       entryId: req.body.entryId
     }
@@ -89,21 +89,19 @@ router.put('/etfs/myetfs/entryId', function (req, res) {
   const longName = req.body.longName;
   const industry = req.body.industry;
 
-  const etfToUpdate = await db.etfdata.update({ symbol: 'symbol' })
+  const etfToUpdate = await db.etfData.update({ symbol: 'symbol' })
     where: {
       symbol: req.body.symbol
     }
 
-  const etfToUpdate = await db.etfdata.update({ longName: 'longName' })
+  const etfToUpdate = await db.etfData.update({ longName: 'longName' })
     where: {
       longName: req.body.longName
     }
-    const etfToUpdate = await db.etfdata.update({ industry: 'industry' })
+    const etfToUpdate = await db.etfData.update({ industry: 'industry' })
     where: {
       industry: req.body.industry
     }
-
-  )
   res.redirect("/etfs/myetfs");
 });
 
@@ -123,7 +121,7 @@ app.post('/etfs/weekly', async (req, res) => {
     const tickerData = response.data;
     const price = tickerData['Global Quote']["05. price"]
     const ratio = ((price-lower) / (upper - lower)).toFixed(2);
-    db.etf_weekly3.create({ticker: ticker, highEnd: currentHighend, lowEnd: currentLowend, trend:trend, currentPrice:price, ratio:ratio})
+    db.etfWeekly.create({ticker: ticker, highEnd: currentHighend, lowEnd: currentLowend, trend:trend, currentPrice:price, ratio:ratio})
     .then(newTicker=> console.log(newTicker));
     res.redirect('/etfs')
   })  
