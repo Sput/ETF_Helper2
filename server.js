@@ -69,6 +69,45 @@ app.get('/etfs/myetfs', (req, res) => {
   })
 })
 
+app.delete('/etfs/myetfs/entryId', (req, res) => {
+  const etfToDelete = await db.etfdata.Destroy({
+    where: {
+      entryId: req.body.entryId
+    }
+
+  })
+  res.redirect("/etfs/myetfs");
+});
+
+app.get('/etfs/edit', (req, res) => {
+  res.render('etfs/edit');
+});
+
+
+router.put('/etfs/myetfs/entryId', function (req, res) {
+  const symbol = req.body.symbol;
+  const longName = req.body.longName;
+  const industry = req.body.industry;
+
+  const etfToUpdate = await db.etfdata.update({ symbol: 'symbol' })
+    where: {
+      symbol: req.body.symbol
+    }
+
+  const etfToUpdate = await db.etfdata.update({ longName: 'longName' })
+    where: {
+      longName: req.body.longName
+    }
+    const etfToUpdate = await db.etfdata.update({ industry: 'industry' })
+    where: {
+      industry: req.body.industry
+    }
+
+  )
+  res.redirect("/etfs/myetfs");
+});
+
+
 const API_KEY = process.env.API_KEY;
 
 app.post('/etfs/weekly', async (req, res) => {

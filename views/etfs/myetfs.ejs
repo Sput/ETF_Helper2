@@ -3,13 +3,14 @@
         <input type="text" name="symbol" value="<%= ETF.symbol %>">
         <input type="text" name="longName" value="<%= ETF.longName %>">
         <input type="text" name="industry" value="<%= ETF.industry %>">
+        <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=DELETE">
+            <input type="submit" value="Delete">
+        </form>
+        <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=PUT">
+            <input type="submit" value="Update">
+        </form>
     </form>
 <% }) %>
-
-<form method="GET" action="/new">
-    <label for="editETFs">Edit your ETFs</label>
-    <input type="submit">
-  </form>
 
 
  

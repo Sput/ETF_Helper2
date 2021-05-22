@@ -1,30 +1,16 @@
-<h2>EDITING <%= pc.name %> </h2>
-<form method="POST" action="/prehistoric_creatures/<%=pcId%>/?_method=PUT">
-    <label>Image URL</label>
-    <input type="text" name="img_url" value="<%= pc.img_url %>">
-    <label>Type</label>
-    <input type="text" name="type" value="<%= pc.type %>">
+<form method="POST" action="/myetfs/:entryId/<%=entryId%>/?_method=PUT">
+    <label>symbol</label>
+    <input type="text" name="symbol" value="<%= entryId.symbol %>">
+    <label>symbol</label>
+    <input type="text" name="symbol" value="<%= entryId.longName %>">
+    <label>symbol</label>
+    <input type="text" name="symbol" value="<%= entryId.industry %>">
     <input type="submit">
 </form>
-
-<form method="POST" action="/prehistoric_creatures/<%= index %>/?_method=DELETE">
-    <input type="submit" value="Delete">
-</form>
-
-
-<% etfdatas.forEach(ETF => { %>
-    
-        <input type="text" name="ticker" value="<%= ETF.symbol %>">
-        <input type="text" name="low_end" value="<%= ETF.long_name %>">
-        <input type="text" name="high_end" value="<%= ETF.industry %>">
-    
-        <form method="POST" action="/<%= entryId %>/?_method=DELETE">
-            <input type="submit" value="Delete">
-        </form>
-<% }) %>
 
 <form method="GET" action="/new">
     <label for="updateETF">Update data about your ETFs</label>
     <input type="submit">
 </form>
+
 
