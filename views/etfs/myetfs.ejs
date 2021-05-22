@@ -1,0 +1,15 @@
+<% etfdata.forEach(ETF => { %>
+    <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=PUT">
+        <input type="text" name="symbol" value="<%= ETF.symbol %>">
+        <input type="text" name="longName" value="<%= ETF.longName %>">
+        <input type="text" name="industry" value="<%= ETF.industry %>">
+    </form>
+<% }) %>
+
+<form method="GET" action="/new">
+    <label for="editETFs">Edit your ETFs</label>
+    <input type="submit">
+  </form>
+
+
+ 

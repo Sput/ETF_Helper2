@@ -61,6 +61,14 @@ app.get('/etfs', (req, res) => {
   })
 })
 
+app.get('/etfs/myetfs', (req, res) => {
+  db.etfdata.findAll()
+  .then (etfdatas => { 
+    console.log(etfdatas)
+    res.render('etfs/myetfs', {etfdatas});
+  })
+})
+
 const API_KEY = process.env.API_KEY;
 
 app.post('/etfs/weekly', async (req, res) => {
@@ -68,8 +76,8 @@ app.post('/etfs/weekly', async (req, res) => {
   //const {ticker, currentHighend, currentLowend} = req.body;
   console.log(req.body)
   const ticker_for_api = req.body.ticker;
-  const upper = req.body.high_end;
-  const lower = req.body.low_end;
+  const upper = req.body.highEnd;
+  const lower = req.body.lowEnd;
   URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker_for_api}&apikey=${API_KEY}`
   axios.get(URL)
   .then(response => {

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   etfData.init({
     entryId: DataTypes.INTEGER,
     symbol: DataTypes.STRING,
-    long_name: DataTypes.STRING,
+    longName: DataTypes.STRING,
     industry: DataTypes.STRING
   }, {
     sequelize,
