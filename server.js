@@ -97,7 +97,6 @@ app.put('/ETFs/update/:id', async function (req, res) {
   const symbol = req.body.symbol
   const longName = req.body.longName
   const industry = req.body.industry
-  //const {symbol, longName, industry} = req.body
   console.log(id, symbol, longName, industry)
   const etfToUpdate = await db.etfData.findOne({
     where: {id:id}
@@ -107,22 +106,6 @@ app.put('/ETFs/update/:id', async function (req, res) {
   etfToUpdate.industry = industry
   await etfToUpdate.save();
   res.redirect("/etfs/myetfs");
-/*
-  const etfToUpdate = await db.etfData.update({ symbol: 'symbol' })
-    where: {
-      symbol: req.body.symbol
-    }
-
-  const etfToUpdate = await db.etfData.update({ longName: 'longName' })
-    where: {
-      longName: req.body.longName
-    }
-    const etfToUpdate = await db.etfData.update({ industry: 'industry' })
-    where: {
-      industry: req.body.industry
-    }
-  res.redirect("/etfs/myetfs");
-*/
 });
 
 
@@ -130,7 +113,6 @@ const API_KEY = process.env.API_KEY;
 
 app.post('/etfs/weekly', async (req, res) => {
   const [ticker, currentLowend, currentHighend, trend] = [req.body.ticker, req.body.highEnd, req.body.lowEnd, req.body.trend]
-  //const {ticker, currentHighend, currentLowend} = req.body;
   console.log(req.body)
   const ticker_for_api = req.body.ticker;
   const upper = req.body.highEnd;
@@ -148,8 +130,7 @@ app.post('/etfs/weekly', async (req, res) => {
 })
 
 app.post('/etfs/new', async (req, res) => {
-  const {symbol, longName, industry} = req.body
-  //const {ticker, currentHighend, currentLowend} = req.body;
+  const {symbol, longName, industry} = req.body;
   console.log(symbol, longName, industry);
   const newTicker = await db.etfData.create({symbol: symbol, longName: longName, industry: industry});
   res.redirect('/etfs/myetfs')

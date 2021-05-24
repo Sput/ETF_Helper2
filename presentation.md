@@ -25,6 +25,13 @@ The database consists of three tables:
 | PUT | /etfs/edit/:id | UPDATE | update data about your ETF |
 | DELETE | /etfs/delete/:id | DELETE | remove an ETF from tracking |
 
+# Installation instructions
+1. `npm install` will install the packages locally that you will need to run the application
+2. install postgres to use as the database to host the data you create
+3. `sequelize db:migrate` to migrate your databse models to postgres
+4. run `npm start`
+5. the application will launch at localhost:3000
+
 # Future Upgrades
 Charting: gather data on a weekly basis and be able to make charts
 

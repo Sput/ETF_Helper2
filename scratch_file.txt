@@ -37,3 +37,5 @@ order createdAt:DESC
         <form method="POST" action="/ETFs/update/<%=ETF.id%>/?_method=PUT">
             <input type="button" value="Update">
         </form>
+
+https://etf-helper.herokuapp.com/etfs/

@@ -1,4 +1,9 @@
 
+<div class="fromTheTop">
+<p></p>
+</div>
+
+
 <div class="mb-3" class="container-lg" class="center">
 <% etfWeeklies.forEach(ETF => { %>
     <form class="center" method="POST" action="/ETFs/<%=ETF.etfDataId%>/?_method=PUT">
@@ -11,11 +16,12 @@
     </form>
 <% }) %>
 </div>
+<div class="center-button">
 <form method="GET" class="btn btn-primary" action="/etfs/new">
     <label>Create a new ETF to track</label>
     <p></p>
     <input type="submit">
 </form>
 
-
+</div>
 
