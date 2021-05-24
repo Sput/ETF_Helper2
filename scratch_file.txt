@@ -28,3 +28,12 @@ app.get('/historic/historic', (req, res) => {
 
 etf_weekly.findOne
 order createdAt:DESC
+
+<%=ETF.id%>/?_method=PUT">
+
+<form method="POST" action="/ETFs/delete/<%=ETF.id%>/?_method=DELETE">
+            <input type="button" value="Delete">
+        </form>
+        <form method="POST" action="/ETFs/update/<%=ETF.id%>/?_method=PUT">
+            <input type="button" value="Update">
+        </form>

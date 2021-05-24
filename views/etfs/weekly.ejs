@@ -1,4 +1,6 @@
-<form action="/etfs/weekly" method="POST">
+<div class="mb-3" class="container-lg" class="center">
+
+<form class="center" action="/etfs/weekly" method="POST">
     <label for="ticker">Ticker</label>
     <input required type="text" id="ticker" name="ticker">
     <label for="lowEnd">Low End</label>
@@ -11,10 +13,10 @@
         <option value="bullish">Bullish</option>
         <option value="bearish">Bearish</option>
         </select>
-    <button onclick="addRow()">Add ETF</button>
+    <button type="submit">Submit Tickers</button>
     
 </form>
-
+<button onclick="addRow()">Add ETF</button>
 <script>
 function addRow() {
     let newTicker = document.createElement("INPUT");
@@ -32,4 +34,4 @@ function addRow() {
 
 </script>
 
-<button type="submit">Submit Tickers</button>
+</div>

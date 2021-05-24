@@ -8,11 +8,13 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const db = require('./models');
 const axios = require('axios');
+const methodOverride = require('method-override');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
 app.set('view engine', 'ejs');
 
+app.use(methodOverride("_method"))
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
@@ -55,39 +57,56 @@ app.get('/etfs/new', (req, res) => {
 
 app.get('/etfs', (req, res) => {
   db.etfWeekly.findAll()
-  .then (etfWeeklys => { 
-    console.log(etfWeeklys)
-    res.render('etfs/index', {etfWeeklys});
+  .then (etfWeeklies => { 
+    console.log(etfWeeklies)
+    res.render('etfs/index', {etfWeeklies});
   })
 })
 
 app.get('/etfs/myetfs', (req, res) => {
   db.etfData.findAll()
-  .then (etfDatas => { 
-    console.log(etfDatas)
-    res.render('etfs/myetfs', {etfDatas});
+  .then (etfData => { 
+    console.log(etfData)
+    res.render('etfs/myetfs', {etfData});
   })
 })
 
-app.delete('/etfs/myetfs/:id', async (req, res) => {
+app.delete('/ETFs/delete/:id', async (req, res) => {
+  const entryId = req.params.id
   const etfToDelete = await db.etfData.destroy({
     where: {
-      id: req.body.entryId
+      id: entryId
     }
 
   })
   res.redirect("/etfs/myetfs");
 });
 
-app.get('/etfs/edit', (req, res) => {
-  res.render('etfs/edit');
+app.get('/ETFs/edit/:id', async (req, res) => {
+  const etfToUpdate = await db.etfData.findOne({
+      where: {id:req.params.id}
+  })
+  
+  res.render('etfs/edit', {etfToUpdate});
 });
 
 
-app.put('/etfs/myetfs/:id', async function (req, res) {
-  const symbol = req.body.symbol;
-  const longName = req.body.longName;
-  const industry = req.body.industry;
+app.put('/ETFs/update/:id', async function (req, res) {
+  console.log('waiting')
+  const id = req.params.id
+  const symbol = req.body.symbol
+  const longName = req.body.longName
+  const industry = req.body.industry
+  //const {symbol, longName, industry} = req.body
+  console.log(id, symbol, longName, industry)
+  const etfToUpdate = await db.etfData.findOne({
+    where: {id:id}
+  }) 
+  etfToUpdate.symbol = symbol
+  etfToUpdate.longName = longName
+  etfToUpdate.industry = industry
+  await etfToUpdate.save();
+  res.redirect("/etfs/myetfs");
 /*
   const etfToUpdate = await db.etfData.update({ symbol: 'symbol' })
     where: {
@@ -129,11 +148,11 @@ app.post('/etfs/weekly', async (req, res) => {
 })
 
 app.post('/etfs/new', async (req, res) => {
-  const [symbol, long_name, industry] = [req.body.symbol, req.body.long_name, req.body.industry]
+  const {symbol, longName, industry} = req.body
   //const {ticker, currentHighend, currentLowend} = req.body;
-  console.log(symbol, long_name, industry);
-  const newTicker = await db.etfData.create({symbol: symbol, long_name: long_name, industry: industry});
-  res.redirect('/etfs')
+  console.log(symbol, longName, industry);
+  const newTicker = await db.etfData.create({symbol: symbol, longName: longName, industry: industry});
+  res.redirect('/etfs/myetfs')
 })
 
 app.use('/auth', require('./controllers/auth'));

@@ -1,16 +1,20 @@
-<% etfdata.forEach(ETF => { %>
-    <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=PUT">
-        <input type="text" name="symbol" value="<%= ETF.symbol %>">
-        <input type="text" name="longName" value="<%= ETF.longName %>">
-        <input type="text" name="industry" value="<%= ETF.industry %>">
-        <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=DELETE">
-            <input type="submit" value="Delete">
-        </form>
-        <form method="POST" action="/ETFs/<%=ETF.entryId%>/?_method=PUT">
-            <input type="submit" value="Update">
-        </form>
+<div class="mb-3" class="container-lg" class="center">
+
+<% etfData.forEach(ETF => { %>
+    <form method="POST" action="/ETFs/delete/<%= ETF.id%>/?_method=DELETE">
+        <input type="text" id="symbol" name="symbol" value="<%= ETF.symbol %>">
+        <input type="text" id="longName" name="longName" value="<%= ETF.longName %>">
+        <input type="text" id="industry" name="industry" value="<%= ETF.industry %>">
+        <a href="/ETFs/edit/<%= ETF.id %>">Edit</a>
+        <input type="submit" value="Delete">
     </form>
 <% }) %>
 
-
+</div>
  
+<form method="GET" class="btn btn-primary" action="/etfs/weekly">
+    <label>Enter Data for the week</label>
+    <p></p>
+    <input type="submit">
+</form>
+

@@ -1,25 +1,21 @@
 
-
+<div class="mb-3" class="container-lg" class="center">
 <% etfWeeklies.forEach(ETF => { %>
-    <form method="POST" action="/ETFs/<%=ETF.etfDataId%>/?_method=PUT">
-        <input type="text" name="ticker" value="<%= ETF.ticker %>">
-        <input type="text" name="lowEnd" value="<%= ETF.lowEnd %>">
-        <input type="text" name="highEnd" value="<%= ETF.highEnd %>">
-        <input type="text" name="currentPrice" value="<%= ETF.currentPrice %>">
-        <input type="text" name="trend" value="<%= ETF.trend %>">
-        <input type="text" name="ratio" value="<%= ETF.ratio %>">
-    
-        <input type="submit">
+    <form class="center" method="POST" action="/ETFs/<%=ETF.etfDataId%>/?_method=PUT">
+        <input type="text" name="ticker" class="sm-box" value="<%= ETF.ticker %>">
+        <input type="text" name="lowEnd" class="sm-box" value="<%= ETF.lowEnd %>">
+        <input type="text" name="highEnd" class="sm-box" value="<%= ETF.highEnd %>">
+        <input type="text" name="currentPrice" class="sm-box" value="<%= ETF.currentPrice %>">
+        <input type="text" name="trend" class="sm-box"value="<%= ETF.trend %>">
+        <input type="text" name="ratio" class="sm-box" data-color="<%= ETF.ratio %>" value="<%= ETF.ratio %>">
     </form>
 <% }) %>
-
-<form method="GET" action="/new">
-    <label for="editETFs">Edit your ETFs</label>
+</div>
+<form method="GET" class="btn btn-primary" action="/etfs/new">
+    <label>Create a new ETF to track</label>
+    <p></p>
     <input type="submit">
-  </form>
+</form>
 
 
-<form method="GET" action="/new">
-    <label for="updatePrices">Get updated market prices</label>
-    <input type="submit">
-  </form>
+

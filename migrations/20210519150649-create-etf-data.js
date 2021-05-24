@@ -11,7 +11,7 @@ module.exports = {
       symbol: {
         type: Sequelize.STRING
       },
-      long_name: {
+      longName: {
         type: Sequelize.STRING
       },
       industry: {

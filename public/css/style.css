@@ -4,6 +4,39 @@ nav ul li {
   margin-right: .3em;
 }
 
-h1 {
-  color: chartreuse;
+
+
+
+.center {
+    margin-top: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    border: 3px solid;
+    padding: 5px;
+}
+
+.sm-box {
+    width: 16%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-form {
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.fill {
+  
+  width: 100%;
+}
+
+.center-button {
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 5px;
 }

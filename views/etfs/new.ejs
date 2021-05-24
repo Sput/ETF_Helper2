@@ -1,10 +1,12 @@
-<form action="/etfs/new" method="POST">
+<div class="mb-3" class="container-lg" class="center">
+
+<form action="/etfs/new" method="POST" class="center">
     <label for="symbol">Ticker</label>
     <input required type="text" id="symbol" name="symbol">
-    <label for="long_name">Full Name</label>
-    <input required type="text" id="long_name" name="long_name">
+    <label for="longName">Full Name</label>
+    <input required type="text" id="longName" name="longName">
     <label for="industry">Industry</label>
-    <select id="trend" name="trend">
+    <select id="industry" name="industry">
         <option value="discretionary">Consumer Discretionary</option>
         <option value="financials">Financials</option>
         <option value="health">Health Care</option>
@@ -13,3 +15,5 @@
         </select>
     <button type="submit">Submit Tickers</button>
 </form>
+
+</div>

@@ -1,10 +1,12 @@
-<form method="POST" action="/myetfs/:entryId/<%=entryId%>/?_method=PUT">
+<div class="mb-3" class="container-lg" class="center">
+
+<form method="POST" class="center" action="/ETFs/update/<%=etfToUpdate.id%>/?_method=PUT">
     <label>symbol</label>
-    <input type="text" name="symbol" value="<%= entryId.symbol %>">
+    <input type="text" name="symbol" value="<%= etfToUpdate.symbol %>">
     <label>symbol</label>
-    <input type="text" name="symbol" value="<%= entryId.longName %>">
+    <input type="text" name="longName" value="<%= etfToUpdate.longName %>">
     <label>symbol</label>
-    <input type="text" name="symbol" value="<%= entryId.industry %>">
+    <input type="text" name="industry" value="<%= etfToUpdate.industry %>">
     <input type="submit">
 </form>
 
@@ -13,4 +15,4 @@
     <input type="submit">
 </form>
 
-
+</div>
